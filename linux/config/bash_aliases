@@ -1,0 +1,56 @@
+# Bash Shell additions
+#
+# @desc:    This file contains common used aliases
+#
+# @file:    ~/.bash_aliases
+# @date:    2016-01-16
+# @author:  Oliver Walch
+# ------------------------------------------------------------------------------
+
+#
+# Change dir: cd
+#
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias c="cd"
+
+#
+# list: ls, dir, vdir
+#
+#alias ls='ls -r -t --color=auto '
+alias pstree='pstree -G'
+alias dir='ls --color=auto --format=vertical'
+alias vdir='ls --color=auto --format=long'
+
+#
+# Quartus
+#
+alias qp9="source ~/config/scripts/quartus9.1.sh"   # Quartus 9.1 sp2
+alias qp12="source ~/config/scripts/quartus12.1.sh" # Quartus 12.1 sp1
+alias nios="source ~/config/scripts/nios2_env.sh"   # Nios2 variables
+alias nios2="/opt/altera/12.1sp1/nios2eds/nios2_command_shell.sh" # Nios2 env script
+
+#
+# Modelsim
+#
+alias msim="source ~/config/scripts/modelsim_6_2.sh"
+
+#
+# Quick move: qmv
+#
+alias qmv="qmv -e emacs --format=do"                # quick move 
+
+#
+# Ubuntu
+#
+alias update="sudo apt-get update"
+alias upgrade="sudo apt-get upgrade"
+alias dist-upgrade="sudo apt-get dist-upgrade"
+alias autoremove="sudo apt-get autoremove"
+alias autoclean="sudo apt-get autoclean"
+
+alias grep="grep --exclude-dir='.svn'"
+
+alias bäng="sudo shutdown -P 0"
+

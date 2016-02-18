@@ -1,0 +1,4 @@
+#!/bin/bash
+export WIRESHARK_RUN_FROM_BUILD_DIRECTORY=1
+/home/$USER/apps/wireshark/tshark "$@"
+

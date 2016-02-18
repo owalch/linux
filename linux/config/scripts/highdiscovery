@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+sudo ~/apps/HiDiscovery/HiDiscovery.bin
+
+exit 0

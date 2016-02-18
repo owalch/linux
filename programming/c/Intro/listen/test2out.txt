@@ -1,0 +1,145 @@
+---------------------------------------------------------------
+-> printing  queue1 -> empty, total 0 elements
+-> printing  queue2 -> empty, total 0 elements
+-> printing  prioliste1 -> empty, total 0 elements
+-> printing  prioliste2 -> empty, total 0 elements
+---------------------------------------------------------------
+---------------------------------------------------------------
+-> printing  queue2, after one put, total 1 elements
+ > node tid = 0, prio = 1, ready time = 40
+-> printing first element of list queue2 after 6 puts
+ > node tid=0, prio=1, ready time=40
+
+-> printing  queue2 after 6 puts, total 6 elements
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 5, prio = 3, ready time = 10
+---------------------------------------------------------------
+---------------------------------------------------------------
+-> printing  prioliste1 -> empty, total 0 elements
+-> printing first element of list --->> queue2, for-loop before pop
+ > node tid=0, prio=1, ready time=40
+
+-> printing  queue2, for-loop after pop, total 5 elements
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 5, prio = 3, ready time = 10
+-> printing  prioliste1, for-loop, total 3 elements
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing first element of list --->> queue2, for-loop before pop
+ > node tid=1, prio=1, ready time=20
+
+-> printing  queue2, for-loop after pop, total 4 elements
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 5, prio = 3, ready time = 10
+-> printing  prioliste1, for-loop, total 4 elements
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing first element of list --->> queue2, for-loop before pop
+ > node tid=2, prio=1, ready time=30
+
+-> printing  queue2, for-loop after pop, total 3 elements
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 5, prio = 3, ready time = 10
+-> printing  prioliste1, for-loop, total 5 elements
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing first element of list --->> queue2, for-loop before pop
+ > node tid=3, prio=2, ready time=35
+
+-> printing  queue2, for-loop after pop, total 2 elements
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 5, prio = 3, ready time = 10
+-> printing  prioliste1, for-loop, total 6 elements
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing first element of list --->> queue2, for-loop before pop
+ > node tid=4, prio=3, ready time=50
+
+-> printing  queue2, for-loop after pop, total 1 elements
+ > node tid = 5, prio = 3, ready time = 10
+-> printing  prioliste1, for-loop, total 7 elements
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing first element of list --->> queue2, for-loop before pop
+ > node tid=5, prio=3, ready time=10
+
+-> printing  queue2, for-loop after pop, total 0 elements
+-> printing  prioliste1, for-loop, total 8 elements
+ > node tid = 5, prio = 3, ready time = 10
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing  queue2,     after 1. for loop, total 0 elements
+-> printing  prioliste1, after 1. for loop, total 8 elements
+ > node tid = 5, prio = 3, ready time = 10
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing  queue1,     after 1. for loop, total 6 elements
+ > node tid = 0, prio = 1, ready time = 40
+ > node tid = 1, prio = 1, ready time = 20
+ > node tid = 2, prio = 1, ready time = 30
+ > node tid = 3, prio = 2, ready time = 35
+ > node tid = 4, prio = 3, ready time = 50
+ > node tid = 5, prio = 3, ready time = 10
+---------------------------------------------------------------
+---------------------------------------------------------------
+-> printing  prioliste1, after 600 inserts and 590 pops, total 16 elements
+ > node tid = 591, prio = 7, ready time = 972
+ > node tid = 592, prio = 7, ready time = 974
+ > node tid = 593, prio = 7, ready time = 976
+ > node tid = 594, prio = 7, ready time = 978
+ > node tid = 595, prio = 7, ready time = 980
+ > node tid = 596, prio = 7, ready time = 982
+ > node tid = 597, prio = 7, ready time = 984
+ > node tid = 598, prio = 7, ready time = 986
+ > node tid = 599, prio = 7, ready time = 988
+ > node tid = 600, prio = 7, ready time = 990
+ > node tid = 601, prio = 7, ready time = 992
+ > node tid = 602, prio = 7, ready time = 994
+ > node tid = 603, prio = 7, ready time = 996
+ > node tid = 604, prio = 7, ready time = 998
+ > node tid = 7, prio = 4, ready time = 999
+ > node tid = 6, prio = 4, ready time = 1000
+-> printing  queue1 before end, total 6 elements
+ > node tid = 32682528, prio = 0, ready time = 40
+ > node tid = 32682720, prio = 0, ready time = 20
+ > node tid = 32682336, prio = 0, ready time = 30
+ > node tid = 32682432, prio = 0, ready time = 35
+ > node tid = 32682240, prio = 0, ready time = 50
+ > node tid = 0, prio = 0, ready time = 10
+-> printing  queue2 before end, total 0 elements
+-> printing  prioliste2, before end, total 0 elements

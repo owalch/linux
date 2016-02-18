@@ -1,2 +1,2 @@
-# linux
-Usefull linux stuff
+# Oliver's stuff repo
+Usefull linux and other stuff

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export WIRESHARK_RUN_FROM_BUILD_DIRECTORY=1
+cd /home/$USER/apps/wireshark
+gksudo ./wireshark
+

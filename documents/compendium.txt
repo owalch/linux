@@ -1,0 +1,593 @@
+# Linux compendium
+#
+# @desc:    Common Linux Commands
+#
+# @file:    compendium.txt
+# @date:    2012-10-10
+# @author:  Oliver Walch
+
+
+### Commonly used commands
+-------------------------------------------------------------------------------
+arp -a -n                       # Arp Einträge numerisch anzeigen
+baobab                          # Festplattenbelegung anzeigen
+bittwist -i ethX <filename.cap> # Capter an eth-Port senden (als root)
+cat /proc/cpuinfo               # Infos über die CPU ausgeben
+chmod 755 <filename>            # Rechte ändern für owner,group,all
+Ctrl + D                        # ausloggen
+Ctrl + Alt + L                  # User-Session sperren
+df -h                           # Speicherbelegung anzeigen
+du -sh <folder>                 # Grösse des Folders anzeigen
+export PATH=$PATH:~/<new_Pfad>  # Pfad hinzufügen
+find -iname '*.sh' | xargs rm   # Find & remove .sh files
+find -iname '*.vhd' | xargs grep --color -C5 <CNT>  # Suche nach CNT in .vhd files
+gparded /dev/sdb                # Partitionen erstellen
+grep -i- r 'TEXT' <Path>        # Suche nach Fileinhalt 'TEXT'
+host <IP-Adresse>               # Hostnamen auflösen
+ifconfig                        # eth Konfiguration anzeigen
+ldd -v <Befehl>                 # Bibliotheken nachverfolgen
+less /etc/fstab                 # Filesystem ausgeben
+locate libnss_files             # sucht nach Einträgen in einer DB
+ln -s <directory> linkname      # Symbolischen Link erzeugen
+ls -ld <linkname>               # Pfad des Links anzeigen
+ls -sSH                         # Inhalt mit Grösse anzeigen
+make -J 8                       # alle 8 Prozessoren parallel schalten
+man ascii                       # ASCII Tabelle
+meld <Datei1> <Datei2>          # Vergleichen zweier Dateien
+meld -a .
+microcom -p /dev/tty<name>      # open serial Port Tool on specific device
+    Ctrl + AltGr + \            # exit microcom
+mpstat -P ALL                   # Prozessorauslastung der 8 Kernel
+netstat -n -l -p | grep quartus # Status über Ports und Prozesse
+ping -I ethX <IP-Address>       # Ping über Port X an IP-Adresse
+ping -s <length> <IP-Address>   # Ping mit length Bytes an IP-Adresse
+rm -rf folder/                  # Folder samt Inhalt löschen
+strace <Befehl>                 # Ausgabe der ausführenden Befehle
+sudo -s                         # set user as root (exit to escape)
+sudo bash                       # change to root
+tar cvf <filename.tar> file     # File archivieren
+tar svf <filename.tar>          # filename.tar extrahieren
+ulimit -m 1200000               # limit memory usage
+ulimit -v 1200000               # limit cup usage
+xev                             # Key event anzeigen
+
+
+### Autostart for Ubuntu
+--------------------------------------------------------------------------------
+To add in directory: /etc/xdg/autostart
+<file_name>.desktop
+    [Desktop Entry]
+    Type=Application
+    Encoding=UTF-8
+    Name=Private autostart
+    Comment=Starts individual applications
+    Exec=sh '/home/USERNAME/config/autostart.sh'
+
+
+### Bash Shell console commands
+--------------------------------------------------------------------------------
+Alt + .                         # gives the last created object
+Alt + b                         # move backwards one word
+Alt + f                         # move forward one word
+Ctrl + a                        # jumps to the begining of the command 
+Ctrl + b                        # move backwards one character
+Ctrl + c                        # kills the current command or process
+Ctrl + d                        # kills the shell
+Ctrl + e                        # jumps to the end of the command
+Ctrl + f                        # move forward one character
+Ctrl + h                        # deletes one letter from the command
+Ctrl + l                        # clear screen
+Ctrl + r                        # search in the command history
+Ctrl + u                        # clears the typing before the hotkey
+Ctrl + z                        # puts currently process in background
+Esc + .                         # gives the last command you typed
+Esc + b                         # jump back by one word
+
+BASH Variables:
+$$ = current pid
+!$ = last command issued
+$? = error code of last command
+$0 = command
+$1 = argument #1, also $2,$3,$4, etc.
+@  = full command line
+$_ = current shell
+
+
+### Boot repair
+--------------------------------------------------------------------------------
+Nice tool if you crash your grub manager
+sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt-get update
+sudo apt-get install -y boot-repair && (boot-repair &)
+
+
+### Convert images: sudo apt-get install imagemagick
+--------------------------------------------------------------------------------
+convert example.png -resize 200×100 example.png
+for file in *.jpg; do convert $file -resize 800 low-$file; done
+
+
+### Darktable www.darktable.org
+--------------------------------------------------------------------------------
+Open source photography workflow application and RAW developer
+
+
+### dd tool generate random content
+--------------------------------------------------------------------------------
+dd if=/dev/urandom of=test.txt
+
+
+### DHCP
+--------------------------------------------------------------------------------
+Creat dhcp config file: /etc/dhspd.conf
+    subnet 192.168.0.0 netmask 255.255.0.0 {
+        option routers          192.168.1.1;
+        option subnet-mask      255.255.0.0;
+        option domain-name      "local.net";
+        option domain-name-servers ns.local.net;
+        host trgt {
+            hardware ethernet       00:11:22:33:44:55;
+            fixed-address           192.168.1.10;
+            option root-path        "/mnt/dionysos";
+            option host-name        "nios2";
+            next-server             192.168.1.1;
+            filename                "/tftpboot/dionysos/uImage";
+        }
+    }
+
+
+
+### Eclipse installation
+--------------------------------------------------------------------------------
+tar -vxzf <source.tar.gz>
+sudo mv eclipse/ /opt/
+sudo chown -R USERNAME:USERNAME /opt/eclipse
+sudo find /opt/eclipse/ -type d -print0 | xargs -0 chmod 755
+
+# create an eclipse executable in the path
+vim ~/config/scripts/eclipse
+    #!/bin/sh
+    export ECLIPSE_HOME="/opt/eclipse"
+    $ECLIPSE_HOME/eclipse $*
+
+# create desktop item
+sudo vim /usr/share/applications/eclipse.desktop
+    [Desktop Entry]
+    Encoding=UTF-8
+    Name=Eclipse
+    Comment=Eclipse IDE
+    Exec=eclipse
+    Icon=/opt/eclipse/icon.xpm
+    Terminal=false
+    Type=Application
+    Categories=GNOME;Application;Development;
+    StartupNotify=true
+
+
+### Ethernet iface config
+--------------------------------------------------------------------------------
+ifconfig ethX down                          # Stop eth iface
+ifconfig ethX hw ether 11.22.33.44.55.66    # set MAC-Address
+ifconfig ethX 192.168.1.12 up               # Set IP address and run iface
+sudo /etc/init.d/networking restart         # restart network interfaces
+
+
+### FTP, TFPT
+--------------------------------------------------------------------------------
+1. sudo apt-get install xinetd tftpd tftp
+2. Create /etc/xinetd.d/tftp and put this entry:
+    service tftp
+    {
+        protocol        = udp
+        port            = 69
+        socket_type     = dgram
+        wait            = yes
+        user            = root
+        server          = /usr/sbin/in.tftpd
+        server_args     = -s /tftpboot
+        disable         = no
+        per_source      = 11
+        cps             = 100 2
+    }
+3. Make /tftpboot directory
+    sudo mkdir /tftpboot
+    sudo chmod -R 755 /tftpboot
+4. Start tftpd through xinetd
+    sudo /etc/init.d/xinetd restart
+5. Testing
+    touch /tftpbpoot/test.txt
+    chmod 777 /tftpboot/test.txt
+    tftp <host or IP>
+    tftp> put test.txt
+    tftp> quit
+
+
+### GIMP
+--------------------------------------------------------------------------------
+sudo vim /usr/share/applications/gimp.desktop       # get start data
+Exec=env UBUNTU_MENUPROXY= gimp-2.8 %U              # start gimp with local menu
+env QT_X11_NO_NATIVE_MENUBAR=1 krita                # for QT users
+
+
+### GIT
+--------------------------------------------------------------------------------
+add                             # Add file contents to the changeset to be committed next
+apply                           # Apply a patch on a git index file and a working tree
+archive                         # Create an archive of files from a named tree
+bisect                          # F ind the change that introduced a bug by binary search
+branch -a                       # List, create, or delete branches
+branch <Name>                   # create new branch „Name“
+checkout <branch>               # Checkout and switch to a branch
+checkout -f                     # sämtliche Files auschecken 
+checkout <filename>             # nur ein bestimtes File auschecken
+checkout -b <branchname>        # create and immediately switch to a branch
+cherry-pick                     # Apply the change introduced by an existing commit
+clone -n <Address>              # Clone a repository into a new directory
+commit                          # Record changes to the repository
+diff                            # Show changes between commits, commit and workingtree
+fetch <all> or  <origin-Name>   # Download objects and refs from another repository
+grep                            # Print lines matching a pattern
+init                            # Create empty git repository or reinitialize an existing one
+less .git/config                # Config anzeigen
+log                             # Show commit logs
+merge                           # Join two or more development histories together
+mv                              # Move or rename a file, a directory, or a symlink
+prune                           # Prune all unreachable objects from the object database
+pull                            # Fetch from and merge with another repo or a local branch
+push                            # Update remote refs along with associated objects
+rebase                          # Forward-port local commits to the updated upstream head
+remote show <Origin-Name>       # Infos über s Repo anzeigen
+remote add <url> or <name>      # Repo hinzufügen
+reset                           # Reset current HEAD to the specified state
+revert                          # Revert an existing commit 
+rm                              # Remove files from the working tree and from the index 
+show                            # Show various types of objects 
+show-branch                     # Show branches and their commits 
+status                          # Show the working tree status
+tag                             # Create, list, delete or verify a tag object signed with GPG
+
+
+### Gnome-terminal
+--------------------------------------------------------------------------------
+gconftool-2 -R /apps/gnome-terminal >> file.txt		# get terminal config to text file
+gconftool-2 -s -t string /apps/gnome-terminal/profiles/Default/palette  "string" # bind value
+
+
+### GNU GCC Compiler
+--------------------------------------------------------------------------------
+gcc -c -O0 -g hello01.c         # ohne Komprimierung
+gcc -c <filename.c>             # C-File direk in Objektfile umwandeln
+gcc -S <filename.c>             # C-File in Assmblercode umwandeln
+gcc -Wall -o outputfile file.c  # .c file kompilieren und linken
+objdump -d <objfile.o>          # Objektfile ausgabe
+objdump -Sr <objfile.o>         # Objektfile anzeigen mit Referenz
+objdump -t -j .text <assambliertes_file>        # Bereich .text anzeigen
+objdump -t <objfile.o>| grep 'variablenname'    # Speicherbereich und Grösse anzeigen
+readelf -l <filename>           # elf-File Headers auslesen
+
+
+### GNU GDB Debugging
+--------------------------------------------------------------------------------
+nios2-gdb-server --tcpport 9999 --tcppersist        # GDB-Server starten
+nios2-elf-gdb                                       # Remote host GDB starten
+target remote localhost:9999                        # Host mit Server verbinden
+disassemble $pc-<offset> $pc+<offset>               # Assemblercode anzeigen
+info registers                                      # Register anzeigen
+until *<Address>                                    # ausführen bis zur Adresse
+nexti                                               # 1 Single step ausführen
+c                                                   # ausfüren bis zu manuellen Stop
+p /x $pc                                            # PC in hex ausgeben
+display /x $at                                      # at ausgeben in hex
+nios2-elf-objdump -d images/zImage > obdjdump.txt   # Assemblercode des zImages ausgeben
+vim .gdbinit                                        # File im Projektverzeichnis erstellen
+    target remote localhost:9999                    # Initdatei, erspart manuelles verbinden
+set *((unsigned char *) 0xe2803260) = 0             # alle LEDs auf dem dionysos one
+
+
+### Google Drive
+--------------------------------------------------------------------------------
+sudo add-apt-repository ppa:invernizzi/google-docs-fs
+sudo apt-get update && sudo apt-get install google-docs-fs
+Create a folder within your home folder called "Drive"
+gmount Drive username@gmail.com
+
+
+### Grep to get a process's id
+--------------------------------------------------------------------------------
+ps -eo pid,args | pgrep <processname>
+
+
+### Grub boot manager (edit /etc/default/grub and execute sudo update-grub)
+--------------------------------------------------------------------------------
+GRUB_DEFAULT=saved              # start last opened session
+GRUB_SAVEDEFAULT=true           # save opend session as default
+
+
+### Imagemagick
+--------------------------------------------------------------------------------
+mogrify -resize 600x800 *.jpg   # resize Photos to 600x800
+
+
+### jpcap (on 64-bit Ubuntu)
+--------------------------------------------------------------------------------
+1.  check if JAVA_HOME is set e.g. in .bashrc
+    JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+    export JAVA_HOME
+2.  wget http://netresearch.ics.uci.edu/kfujii/Jpcap/jpcap-0.7.tar.gz
+    tar -xvf jpcap-0.7.tar.gz
+    cd jpcap-0.7/src/c/
+3.  vim Makefile
+    change COMPILE_OPTION = -shared -L.
+    to     COMPILE_OPTION = -shared -L. -fPIC
+4.  make
+5.  cd /usr/lib/jvm/java-6-openjdk/jre/lib/i386
+    ln -s <path_to_jpacp>/src/c/libjpcap.so
+6.  cd /usr/lib/jvm/java-6-openjdk/jre/lib/ext
+    ln -s <path_to_jpcap>/lib/jpcap.jar
+
+
+### Kate
+--------------------------------------------------------------------------------
+Edit file on other platforms:
+open -> fish://ines@ipaddr:22/<path>
+
+# Kate plugin TypoScript syntax highliting
+echo 'deb http://download.opensuse.org/repositories/home:bertl555/xUbuntu_12.04/ /' >> /etc/apt/sources.list.d/typoscript-kate-syntax.list
+apt-get update
+apt-get install typoscript-kate-syntax
+wget http://download.opensuse.org/repositories/home:bertl555/xUbuntu_12.04/Release.key
+apt-key add - < Release.key
+
+
+### Kernel modules
+--------------------------------------------------------------------------------
+/etc/modprobe.d/blacklist.conf  # add modules here, that causes errors
+insmod eth.ko                   # load kernel module
+rmmod eth.ko                    # unload kernel module
+mknod /dev/ptp0 c 122 0         # crate node in /dev
+
+
+### Libre Office, add global menu support
+--------------------------------------------------------------------------------
+sudo apt-get install lo-menubar # global menu for unity
+
+
+### Locale language Pack
+--------------------------------------------------------------------------------
+sudo dpkg-reconfigure locales	# reconfigure locales
+sudo apt-get --reinstall install language-pack-de
+sudo update-locale LC_ALL=de_DE.UTF-8 LANG=de_DE.UTF-8
+
+
+### Logfiles
+--------------------------------------------------------------------------------
+/var/log/syslog                 # Kernel log file
+tail -f /var/log/syslog         # set curser to end of logfile in readmode
+
+### Menu (remove global Ubuntu menue)
+--------------------------------------------------------------------------------
+sudo apt-get autoremove appmenu-gtk appmenu-gtk3 appmenu-qt
+
+
+### MII Tool
+--------------------------------------------------------------------------------
+sudo mii-tool-v                 # MII status
+sudo mii-tool eth0 -F 100baseTx-FD
+
+
+### Mount Dateisystem (NFS, fstab)
+--------------------------------------------------------------------------------
+Entry in /etc/fstab
+<file system>               <mount point>           <type>  <options>                       <dump>  <pass>
+<IP>:/mnt                   /mnt                    nfs     nolock,rsize=1024,wsize=1024    0       0
+//cannes.zhaw.ch/ines       /home/USERNAME/cannes/      cifs    username=USERNAME,password=...      0       0
+//public.zhaw.ch/edu        /home/USERNAME/mnt/edu      cifs    credientals=/home/USERNAME/.smbcredentials,rw,mand,nosuid,nodev 0  0
+
+# create login file: .smbcredentials (sudo chmod 600)
+    username=some
+    password=something
+
+Entry in /etc/exports
+# nfs: mount dionysos
+    /mnt/dionysos       192.168.*.*(rw,async,no_subtree_check)
+    /mnt/dionysos       10.*.*.*(rw,async,no_subtree_check)
+# nfs: mount local
+    /mnt/modules        127.0.0.1(rw,async,no_subtree_check)
+ 
+
+### Mozilla
+--------------------------------------------------------------------------------
+Firefox About URLs:
+    about: — The same page as "Help -> About"
+    about:about — Lists all these about: URLs (Mozilla Suite only)
+    about:blank — A blank page. Useful for setting as your homepage
+    about:buildconfig — Reveals details about your Mozilla build options
+    about:cache — Displays cache statistics
+    about:cache?device=memory — Lists memory cache entries
+    about:cache?device=disk — Lists disk cache entries
+    about:cache-entry — Shows information about a cache entry
+    about:config — GUI for modifying user preferences (prefs.js)
+    about:credits — The list of contributors to the Mozilla projects
+    about:logo — Displays the Mozilla logo (Mozilla Suite only)
+    about:license — shows the Mozilla Public License and the Netscape Public 
+        License for the piece of software.
+    about:mozilla — The famous Book of Mozilla
+    about:plugins — Lists all your plugins as well as other useful information
+
+Firefox Shortcuts:
+    Ctrl + Tab or Ctrl + PageDown: Cycle through tabs.
+    Ctrl + Shift + Tab or Ctrl + PageUp: Cycle through tabs in reverse.
+    Ctrl + (1-9): Switch to tab corresponding to number.
+    Ctrl + N: New window.
+    Ctrl + T: New tab.
+    Ctrl + L or Alt + D or F6: Switch focus to location bar.
+    Ctrl + Enter: Open location in new tab.
+    Shift + Enter: Open location in new window.
+    Ctrl + K or Ctrl + E: Switch focus to search bar.
+    Ctrl + O: Open a local file.
+    Ctrl + W: Close tab, or window if there's only one tab open.
+    Ctrl + Shift + W: Close window.
+    Ctrl + S: Save page as a local file.
+    Ctrl + P: Print page.
+    Ctrl + F or F3: Open find toolbar.
+    Ctrl + G or F3: Find next...
+    Ctrl + Shift + G or Shift + F3: Find previous...
+    Ctrl + B or Ctrl + I: Open Bookmarks sidebar.
+    Ctrl + H: Open History sidebar.
+    Escape: Stop loading page.
+    Ctrl + R or F5: Reload current page.
+    Ctrl + Shift + R or Ctrl + F5: Reload current page; bypass cache.
+    Ctrl + U: View page source.
+    Ctrl + D: Bookmark current page.
+    Ctrl + NumpadPlus or Ctrl + Equals (+/=): Increase text size.
+    Ctrl + NumpadMinus or Ctrl + Minus: Decrease text size.
+    Ctrl + Numpad0 or Ctrl + 0: Set text size to default.
+    Alt + Left or Backspace: Back.
+    Alt + Right or Shift + Backspace: Forward.
+    Alt + Home: Open home page.
+    Ctrl + M: Open new message in integrated mail client.
+    Ctrl + J: Open Downloads dialog.
+    F6: Switch to next frame. You must have selected something on the page already, e.g. by use of Tab.
+    Shift + F6: Switch to previous frame.
+    Apostrophe ('): Find link as you type.
+    Slash (/): Find text as you type.
+
+
+### Netcat nc
+--------------------------------------------------------------------------------
+Client-Server                   # listen modus
+    nc -l <IP> <Port_Nr>
+Client-Host
+    nc <IP> <Port_Nr>
+
+
+### Netdump
+--------------------------------------------------------------------------------
+sudo netdump -i ethX -n         # setup sniffer on ethX
+
+
+### Packages
+--------------------------------------------------------------------------------
+sudo apt-get install <package_name>
+sudo apt-get build-dep <package_name>
+
+Remove package:
+    sudo apt-get remove <package_name>
+
+
+### Perf (package: linux-tools-common) get process performance
+--------------------------------------------------------------------------------
+sudo perf record -a             # save performance file
+sudo perf report -a             # read performance file
+
+
+### Permissions (chmod)
+--------------------------------------------------------------------------------
+find <path> -type d -print0 | xargs -0 chmod 644    # set permission recursive for dirs
+                                                    # use -type f for files
+
+### Popper - Notification tool for Ubuntu
+-------------------------------------------------------------------------------
+add repo: sudo add-apt-repository ppa:ralf.hersel/rhersel-ppa
+sudo apt-get update
+sudo apt-get install popper
+
+Blacklist on popper: for example thunderbird
+-> mkdir -p ~/.config/indicators/messages/applications-blacklist/
+cp /usr/share/indicators/messages/applications/thunderbird ~/.config/indicators/messages/applications-blacklist/
+
+
+### potrace (image converter from pnm or  bmp to svg
+--------------------------------------------------------------------------------
+potrace -s logo.bmp
+
+
+### SMB-Mount
+--------------------------------------------------------------------------------
+mount -t cifs <server_path> -o username=<usr>,password=<pw> <local_path>
+(see fstab)
+
+
+### Stream Editor sed
+--------------------------------------------------------------------------------
+sed "/error/d" In >Out          # remove all lines containing 'error'
+sed "/^ *$/d" In >Out           # remove all blank lines
+sed "s/old/new/g" In >Out       # substitution, global old with new, line by line
+sed "s/ \+/ /g" In >Out         # substitute multiple blanks by one blank
+sed "s!/temp/!!g"               # substitue all 'temp' with nothing
+sed -e "s/[aeio]/u/g"           # substitute all 'a,e,i,o' with 'u'
+
+
+### SSH SCP
+--------------------------------------------------------------------------------
+ssh-keygen -b 4096 -t rsa       # create SSH Key (.ssh/id_rsa)
+vim .ssh/config
+    Host <name>                 # ssh <name> instead of ssh user@host
+    HostName <IP-Adresse>
+    User <username>
+ssh usr@192.168.1.100           # direct access as usr
+sshfs user@host:~/directory mountpoint  # Mountpoint hinzufügen
+scp -r <file> user@host:<dir>   # copy file to host
+
+
+### SVN
+-------------------------------------------------------------------------------
+svn add                         # add file to svn repo
+svn co <path>                   # checkout whole folder or file
+svn co -f                       # force checkout
+svn co -r 123                   # checkout revision 123
+svn diff                        # show local changes
+svn log --limit 4               # show last 4 commit messages
+svn rm <file>                   # remove file
+svn status                      # show modified files
+svn up                          # update local repo with server
+
+
+### Thunderbird addon Microsoft Exchange
+--------------------------------------------------------------------------------
+Main Page: http://www.1st-setup.nl/wordpress/?page_id=133 
+FAQ: http://www.1st-setup.nl/wordpress/?page_id=219
+URL für Kalender: https://mail.zhaw.ch/ews/exchange.asmx
+
+
+### tkmib mib browser with GUI
+--------------------------------------------------------------------------------
+tkmib 							# simple browser to get the mib's OID 
+
+
+### Ubuntu Natty workarounds
+--------------------------------------------------------------------------------
+USB Blaster JTAG:
+    mkdir /etc/jtagd
+    cp /opt/altera9.1/quartus/linux/pgm_parts.txt /etc/jtagc    # JTAG bug beheben
+    while sleep 5; do sudo <PATH>/jtagconfig ; done             # JTAG alle 5 s pollen
+
+Quartus IP V6 Problem:
+    vim /etc/hosts -> IP V.6 auskommentieren                    # Quartus startet nur mit IP V4
+
+
+### VIM
+--------------------------------------------------------------------------------
+:%s/^..//g                      # suchen nach Zeilenbeginn, plus zwei Leerzeichen
+                                # ersetzen mit nichts /<leer>/g
+
+
+### VLC videolan player (wiki.videolan.org)
+--------------------------------------------------------------------------------
+# Server
+cvlc -vvv --miface eth2 playlist.pls --sout rtp://239.0.0.1:5004    # multicast stream
+vlc -vvv input_stream --sout '#transcode{vcodec=mp4v,acodec=mpga,vb=800,ab=128,deinterlace}:
+    rtp{mux=ts,dst=239.255.12.42,sdp=sap,name="TestStream"}' 
+
+# Inetaddress: http://wiki.videolan.org/Documentation:Streaming_HowTo/Command_Line_Examples
+# Host
+cvlc -vvv rtp://@239.0.0.1:5004                                     # receive multicast-Stream
+cvlc -vvv rtp://                                                    # receive unicast-Stream
+
+# HTTP Stream with web interface
+vlc -vvv -I http --open http://stream.srg-ssr.ch/drs3/mp3_128.m3u
+
+
+### Wget
+--------------------------------------------------------------------------------
+wget --user=billa --ask-password http://blablabla
+

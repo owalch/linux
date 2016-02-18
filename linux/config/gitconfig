@@ -1,0 +1,65 @@
+[user]
+    name = O. Walch
+    email = info@walcholi.ch
+
+[color]
+    ui = auto
+    #ui = always
+    #diff = auto
+    status = always
+    #branch = auto
+    
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+    [color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+    
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    ann = annotate
+    unstage = reset HEAD
+    unstash = stash pop
+    w = whatchanged
+    ds = !git --no-pager diff --stat -M -w HEAD
+    
+    # from http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain
+    #
+    # show list of contributors in descending order by number of commits
+    rank = shortlog -sn --no-merges
+    # given a string for an author, try to figure out full name and email:
+    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+    # given any git object, try to show it briefly
+    whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+[core]
+    excludesfile = /home/$USER/.gitignore
+[giggle]
+    compact-mode = false
+    main-window-maximized = false
+    main-window-geometry = 1272x993+0+0
+    main-window-view = HistoryView
+    file-view-vpane-position = 391
+    history-view-vpane-position = 338
+[cola]
+    fontdiff = Bitstream Vera Sans Mono,13,-1,5,50,0,0,0,0,0
+    fontui = Nimbus Sans L,13,-1,5,50,0,0,0,0,0
+[gui]
+    fontui = -family \"DejaVu Sans\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+    fontdiff = -family \"DejaVu Sans Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+[rerere]
+    enabled = 1
+[advice]
+    statusHints = false
+    detachedHead = false
+

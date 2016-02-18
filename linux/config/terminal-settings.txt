@@ -1,0 +1,22 @@
+Profile "Default" settings
+********************************************************************************
+### Colors
+Built-in schemes: Custom
+
+Text color: #DCDCCC
+Bold color: Same as text color
+Background color: #2C2C2C
+
+### Palette
+Built-in schemes: Custom
+
+### Color palette
+1,9: #3F3F3F
+2,10: #705050
+3,11: #60B48A
+4,12: #DFAF8F
+5,13: #9AB8D7
+6,14: #DC8CC3
+7,15: #8CD0D3
+8,16: #DCDCCC
+

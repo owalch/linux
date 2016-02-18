@@ -1,0 +1,23 @@
+<bookmarks>
+	<group name="root">
+		<group name="America">
+			<bookmark name="KPCC" url="http://kpcclive1.publicradio.org/kpcclive/" />
+		</group>
+		<group name="SRF">
+			<bookmark name="SRF 1" url="http://stream.srg-ssr.ch/drs1/mp3_128.m3u" />
+			<bookmark name="SRF 2" url="http://stream.srg-ssr.ch/drs2/mp3_128.m3u" />
+			<bookmark name="SRF 2" url="http://stream.srg-ssr.ch/drs3/mp3_128.m3u" />
+			<bookmark name="SRF 4 News"
+				url="http://stream.srg-ssr.ch/drs4news/mp3_128.m3u" />
+			<bookmark name="SRF Musikwelle" url="http://stream.srg-ssr.ch/drsmw/mp3_128.m3u" />
+			<bookmark name="SRF Virus"
+				url="http://stream.srg-ssr.ch/drsvirus/mp3_128.m3u" />
+		</group>
+		<group name="SWR">
+			<bookmark name="SWR1" url="http://mp3-live.swr.de/swr1bw_m.m3u" />
+			<bookmark name="SWR2" url="http://mp3-live.swr.de/swr2_m.m3u" />
+			<bookmark name="SWR3" url="http://mp3-live.swr3.de/swr3_m.m3u" />
+			<bookmark name="SWR4" url="http://mp3-live.swr3.de/swr3_m.m3u" />
+		</group>
+	</group>
+</bookmarks>

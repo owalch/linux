@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="scrollback_lines" mtime="1387350489" type="int" value="1000"/>
+	<entry name="allow_bold" mtime="1387350489" type="bool" value="false"/>
+	<entry name="font" mtime="1387350489" type="string">
+		<stringvalue>Monospace 10</stringvalue>
+	</entry>
+	<entry name="use_system_font" mtime="1387350289" type="bool" value="true"/>
+	<entry name="bold_color_same_as_fg" mtime="1387349527" type="bool" value="true"/>
+	<entry name="background_darkness" mtime="1387350489" type="float" value="0.87334299087524414"/>
+	<entry name="background_type" mtime="1387349537" type="string">
+		<stringvalue>solid</stringvalue>
+	</entry>
+	<entry name="use_theme_colors" mtime="1387350489" type="bool" value="false"/>
+	<entry name="palette" mtime="1387350489" type="string">
+		<stringvalue>#3F3F3F3F3F3F:#706F504F504F:#605FB4B48A89:#DFDFAFAF8F8F:#9A99B8B7D7D7:#DCDC8C8CC3C2:#8C8CD0CFD3D2:#AAAAAAAAAAAA:#2C2B2C2B2C2B:#706F504F504F:#605FB4B48A89:#DFDFAFAF8F8F:#9A99B8B7D7D7:#DCDC8C8CC3C2:#8C8CD0CFD3D2:#FFFFFFFFFFFF</stringvalue>
+	</entry>
+	<entry name="alternate_screen_scroll" mtime="1362992630" type="bool" value="false"/>
+	<entry name="background_color" mtime="1387350489" type="string">
+		<stringvalue>#2C2B2C2B2C2B</stringvalue>
+	</entry>
+	<entry name="visible_name" mtime="1387350489" type="string">
+		<stringvalue>Default</stringvalue>
+	</entry>
+	<entry name="bold_color" mtime="1387350489" type="string">
+		<stringvalue>#000000000000</stringvalue>
+	</entry>
+	<entry name="foreground_color" mtime="1387350489" type="string">
+		<stringvalue>#DCDCDCDCCCCC</stringvalue>
+	</entry>
+</gconf>

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Private autostart
+Comment=Starts individual applications
+Exec=sh '/home/user/config/autostart.sh'

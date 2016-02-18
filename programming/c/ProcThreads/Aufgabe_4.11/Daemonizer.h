@@ -1,0 +1,16 @@
+/*********************************************************************
+* File:		Daemonizer.h
+* Aufgabe:	einen Daemon-Prozess erzeugen
+* Autor:	M. Thaler
+* Datum:	Februar 2000
+*********************************************************************/
+
+#ifndef DAEMONIZER_H
+#define DAEMONIZER_H
+
+int Daemonizer(void Daemon(void *), void *data, 
+               const char *LockFile, const char *LogFile, const char *LivDir);
+
+#endif
+
+//------------------------------------------------------------------------
