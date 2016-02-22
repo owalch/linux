@@ -134,6 +134,11 @@ Creat dhcp config file: /etc/dhspd.conf
         }
     }
 
+# Disable dhcp server from starting on boot
+echo manual | sudo tee -a /etc/init/isc-dhcp-server.override
+
+# Re-enable the server on boot
+# sudo rm -rf /etc/init/isc-dhcp-server.override
 
 
 ### Eclipse installation
